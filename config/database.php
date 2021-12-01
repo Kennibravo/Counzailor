@@ -2,7 +2,7 @@
 // mysql://b1d8eb5ef5c949:ef2666a5@us-cdbr-east-04.cleardb.com/heroku_9311dc1e385daf4?reconnect=true
 return [
 
-   'default' => 'accounts',
+   'default' => 'mysql',
 
    'connections' => [
         'mysql' => [

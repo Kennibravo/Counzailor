@@ -5,19 +5,30 @@ return [
     'default' => 'mysql',
 
     'connections' => [
+        // 'mysql' => [
+        //     'driver'    => 'mysql',
+        //     'host'      => env('DB_HOST', 'us-cdbr-east-04.cleardb.com'),
+        //     'port'      => env('DB_PORT', 3306),
+        //     'database'  => env('DB_DATABASE', 'heroku_9311dc1e385daf4'),
+        //     'username'  => env('DB_USERNAME', 'b1d8eb5ef5c949'),
+        //     'password'  => env('DB_PASSWORD', 'ef2666a5'),
+        //     'charset'   => 'utf8',
+        //     'collation' => 'utf8_unicode_ci',
+        //     'prefix'    => '',
+        //     'strict'    => false,
+        // ],
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => env('DB_HOST', 'us-cdbr-east-04.cleardb.com'),
+            'host'      => env('DB_HOST', 'db4free.net'),
             'port'      => env('DB_PORT', 3306),
-            'database'  => env('DB_DATABASE', 'heroku_9311dc1e385daf4'),
-            'username'  => env('DB_USERNAME', 'b1d8eb5ef5c949'),
-            'password'  => env('DB_PASSWORD', 'ef2666a5'),
+            'database'  => env('DB_DATABASE', 'counzailor'),
+            'username'  => env('DB_USERNAME', 'counzailor'),
+            'password'  => env('DB_PASSWORD', 'counzailor'),
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
             'strict'    => false,
         ],
-
         'mysql2' => [
             'driver'    => 'mysql',
             'host'      => env('DB2_HOST'),

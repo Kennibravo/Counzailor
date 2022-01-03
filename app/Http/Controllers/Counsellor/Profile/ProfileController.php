@@ -19,7 +19,7 @@ class ProfileController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws ValidationException
      */
-    public function update(Request $request, int $userId)
+    public function update(Request $request)
     {
         $this->validate($request, [
             'firstname' => 'required|max:50',
@@ -27,7 +27,7 @@ class ProfileController extends Controller
             'dob' => 'required|max:10'
         ]);
 
-        Counsellor::findOrFail($userId)
+        Counsellor::findOrFail(auth()->id())
             ->update($request->only(['firstname', 'lastname', 'dob']));
 
         return $this->successResponse("Counsellor's Profile updated successfully");
@@ -38,9 +38,10 @@ class ProfileController extends Controller
      * @param int $userId
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getProfile(int $userId)
+    public function getProfile()
     {
-        $counsellor = Counsellor::findOrFail($userId);
+        $counsellor = Counsellor::findOrFail(auth()->id());
+
         return $this->successResponse("Counsellor details", $counsellor);
     }
 
@@ -49,9 +50,9 @@ class ProfileController extends Controller
      * @param int $userId
      * @return \Illuminate\Http\JsonResponse
      */
-    public function deactivateAccount(int $userId)
+    public function deactivateAccount()
     {
-        $counsellor = Counsellor::findOrFail($userId);
+        $counsellor = Counsellor::findOrFail(auth()->id());
         $counsellor->delete();
 
         return $this->successResponse("Counsellor Deactivated Successfully");
@@ -93,13 +94,13 @@ class ProfileController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws ValidationException
      */
-    public function updatePassword(Request $request, int $userId)
+    public function updatePassword(Request $request)
     {
         $this->validate($request, [
            'password' => 'required|max:191|min:8'
         ]);
 
-        $counsellor = Counsellor::findOrFail($userId);
+        $counsellor = Counsellor::findOrFail(auth()->id());
         $counsellor->update(['password' => app('hash')->make($request->password)]);
 
         return $this->successResponse("Password updated successfully");

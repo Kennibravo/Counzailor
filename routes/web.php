@@ -30,11 +30,11 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
         $router->group(['middleware' => 'jwt.auth'], function () use ($router) {
             $router->group(['namespace' => 'Profile', 'name' => 'profile.', 'prefix' => 'profile'], function () use ($router) {
-                $router->put('update/{userId}', ['as' => 'update.info', 'uses' => 'ProfileController@update']);
-                $router->get('{userId}', ['as' => 'get', 'uses' => 'ProfileController@getProfile']);
+                $router->put('update', ['as' => 'update.info', 'uses' => 'ProfileController@update']);
+                $router->get('/', ['as' => 'get', 'uses' => 'ProfileController@getProfile']);
                 $router->delete('{userId}', ['as' => 'deactivate', 'uses' => 'ProfileController@deactivateAccount']);
                 $router->post('/register-counsellee/{userId}', ['as' => 'register.counsellee', 'uses' => 'ProfileController@registerAsCounsellee']);
-                $router->put('update_password/{userId}', ['as' => 'password.update', 'uses' => 'ProfileController@updatePassword']);
+                $router->put('update_password', ['as' => 'password.update', 'uses' => 'ProfileController@updatePassword']);
             });
 
             $router->group(['namespace' => 'Follower', 'name' => 'follow.', 'prefix' => 'follow'], function () use ($router) {

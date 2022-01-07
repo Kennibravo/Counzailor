@@ -47,6 +47,13 @@ $router->group(['prefix' => 'api'], function () use ($router) {
                    $u = \App\Models\CounsellorFollower::searchFollowers('kennysd');
                 });*/
             });
+
+            $router->group(['name' => 'category.', 'prefix' => 'categories'], function () use ($router) {
+                $router->get('', ['as' => 'index', 'uses' => 'CategoryController@index']);
+                $router->post('', ['as' => 'store', 'uses' => 'CategoryController@store']);
+                $router->put('update/{categoryId}', ['as' => 'update', 'uses' => 'CategoryController@update']);
+                $router->get('/{id}', ['as' => 'show', 'uses' => 'CategoryController@show']);
+            });
         });
     });
 
@@ -65,6 +72,13 @@ $router->group(['prefix' => 'api'], function () use ($router) {
                 $router->post('send-message', ['as' => 'send.msg', 'uses' => 'ChatController@sendMessageToCounsellor']);
                 $router->get('messages/{chatId}', ['as' => 'messages', 'uses' => 'ChatController@getCounselleeMessagesInAChat']);
                 $router->get('', ['as' => 'current.user', 'uses' => 'ChatController@getCurrentCounselleeChats']);
+            });
+
+            $router->group(['prefix' => 'counsel_requests', 'name' => 'counsel.'], function () use ($router) {
+                $router->get('', ['as' => 'index', 'uses' => 'CounselRequestController@index']);
+                $router->post('', ['as' => 'store', 'uses' => 'CounselRequestController@store']);
+                $router->put('update/{id}', ['as' => 'update', 'uses' => 'CounselRequestController@update']);
+                $router->delete('delete/{id}', ['as' => 'update', 'uses' => 'CounselRequestController@delete']);
             });
         });
     });
